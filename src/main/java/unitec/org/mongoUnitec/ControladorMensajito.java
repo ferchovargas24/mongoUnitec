@@ -21,6 +21,6 @@ public class ControladorMensajito{
     @RequestMapping(value="/mensajito/{id}", method=RequestMethod.GET,
             headers = {"Accept=application/json"})
     public Mensajito obetenerPorId(@PathVariable String id)throws Exception{
-        return (Mensajito) repoMensa.findOne(id);
+        return repoMensa.findOne(id);
     }
 }
