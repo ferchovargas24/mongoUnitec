@@ -1,6 +1,8 @@
 package unitec.org.mongoUnitec;
 
 import java.util.ArrayList;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,5 +34,17 @@ public class ControladorMensajito{
         Estatus estatus = new Estatus();
         estatus.setSuccess(true);
         return estatus;
+    }
+
+    //Metodo POST para guardar, pero es una version mas pura y efectiva
+    @RequestMapping(value="/mensajito}", method=RequestMethod.POST,
+            headers = {"Accept=application/json"})
+    public Estatus guardarMensajitoPuro(@RequestBody String json)throws Exception{
+        ObjectMapper maper = new ObjectMapper();
+        Mensajito mensa = maper.readValue(json, Mensajito.class);
+        repoMensa.save(mensa);
+        Estatus es = new Estatus();
+        es.setSuccess(true);
+        return es;
     }
 }
