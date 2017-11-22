@@ -15,10 +15,15 @@ public class ControladorMensajito{
     @Autowired RepositorioMensajito repoMensa;
     //  aqui a contnuacion van las 5 operaciones basicas con la entidad mensaje
 
-    @RequestMapping(value="/buscar", method=RequestMethod.GET,
+    @RequestMapping(value="/mensajito", method=RequestMethod.GET,
             headers = {"Accept=application/json"})
-    public ArrayList<Mensajito> obtenerMensajito()throws Exception{
+    public ArrayList<Mensajito> obetenerTodos()throws Exception{
         return (ArrayList<Mensajito>) repoMensa.findAll();
     }
 
+    @RequestMapping(value="/mensajito/{id}", method=RequestMethod.GET,
+            headers = {"Accept=application/json"})
+    public Mensajito obetenerPorId(String id)throws Exception{
+        return (Mensajito) repoMensa.findOne(id);
+    }
 }
