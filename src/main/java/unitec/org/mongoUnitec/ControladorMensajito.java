@@ -2,10 +2,7 @@ package unitec.org.mongoUnitec;
 
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
@@ -23,7 +20,7 @@ public class ControladorMensajito{
 
     @RequestMapping(value="/mensajito/{id}", method=RequestMethod.GET,
             headers = {"Accept=application/json"})
-    public Mensajito obetenerPorId(String id)throws Exception{
+    public Mensajito obetenerPorId(@PathVariable String id)throws Exception{
         return (Mensajito) repoMensa.findOne(id);
     }
 }
