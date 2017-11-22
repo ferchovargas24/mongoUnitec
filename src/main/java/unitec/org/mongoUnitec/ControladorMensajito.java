@@ -23,4 +23,14 @@ public class ControladorMensajito{
     public Mensajito obetenerPorId(@PathVariable String id)throws Exception{
         return repoMensa.findOne(id);
     }
+
+    //Metodo POST para guardar version para clientes varibles (web y desktop)
+    @RequestMapping(value="/mensajito/{titulo}/{cuerpo}", method=RequestMethod.POST,
+            headers = {"Accept=application/json"})
+    public Estatus guardarMensajito(@PathVariable String titulo, @PathVariable String cuerpo)throws Exception{
+        repoMensa.save(new Mensajito(titulo,cuerpo));
+        Estatus estatus = new Estatus();
+        estatus.setSuccess(true);
+        return estatus;
+    }
 }
