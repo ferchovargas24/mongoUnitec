@@ -13,13 +13,13 @@ public class ControladorMensajito{
 
     @Autowired RepositorioMensajito repoMensa;
     //  aqui a contnuacion van las 5 operaciones basicas con la entidad mensaje
-
+    @CrossOrigin
     @RequestMapping(value="/mensajito", method=RequestMethod.GET,
             headers = {"Accept=application/json"})
     public ArrayList<Mensajito> obetenerTodos()throws Exception{
         return (ArrayList<Mensajito>) repoMensa.findAll();
     }
-
+    @CrossOrigin
     @RequestMapping(value="/mensajito/{id}", method=RequestMethod.GET,
             headers = {"Accept=application/json"})
     public Mensajito obetenerPorId(@PathVariable String id)throws Exception{
@@ -27,6 +27,7 @@ public class ControladorMensajito{
     }
 
     //Metodo POST para guardar version para clientes varibles (web y desktop)
+    @CrossOrigin
     @RequestMapping(value="/mensajito/{titulo}/{cuerpo}", method=RequestMethod.POST,
             headers = {"Accept=application/json"})
     public Estatus guardarMensajito(@PathVariable String titulo, @PathVariable String cuerpo)throws Exception{
@@ -37,6 +38,7 @@ public class ControladorMensajito{
     }
 
     //Metodo POST para guardar, pero es una version mas pura y efectiva
+    @CrossOrigin
     @RequestMapping(value="/mensajito", method=RequestMethod.POST,
             headers = {"Accept=application/json"})
     public Estatus guardarMensajitoPuro(@RequestBody String json)throws Exception{
@@ -49,6 +51,7 @@ public class ControladorMensajito{
     }
 
     //Metodo actualzar
+    @CrossOrigin
     @RequestMapping(value="/mensajito", method=RequestMethod.PUT,
             headers = {"Accept=application/json"})
     public Estatus actulizarMensajitoPuro(@RequestBody String json)throws Exception{
@@ -61,7 +64,7 @@ public class ControladorMensajito{
     }
 
     //Metodo delete
-
+    @CrossOrigin
     @RequestMapping(value="/mensajito/{id}", method=RequestMethod.DELETE,
             headers = {"Accept=application/json"})
     public Estatus borrarMensajitoPuro(@PathVariable String id)throws Exception{
