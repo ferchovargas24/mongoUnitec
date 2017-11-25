@@ -37,12 +37,35 @@ public class ControladorMensajito{
     }
 
     //Metodo POST para guardar, pero es una version mas pura y efectiva
-    @RequestMapping(value="/mensajito}", method=RequestMethod.POST,
+    @RequestMapping(value="/mensajito", method=RequestMethod.POST,
             headers = {"Accept=application/json"})
     public Estatus guardarMensajitoPuro(@RequestBody String json)throws Exception{
         ObjectMapper maper = new ObjectMapper();
         Mensajito mensa = maper.readValue(json, Mensajito.class);
         repoMensa.save(mensa);
+        Estatus es = new Estatus();
+        es.setSuccess(true);
+        return es;
+    }
+
+    //Metodo actualzar
+    @RequestMapping(value="/mensajito", method=RequestMethod.PUT,
+            headers = {"Accept=application/json"})
+    public Estatus actulizarMensajitoPuro(@RequestBody String json)throws Exception{
+        ObjectMapper maper = new ObjectMapper();
+        Mensajito mensa = maper.readValue(json, Mensajito.class);
+        repoMensa.save(mensa);
+        Estatus es = new Estatus();
+        es.setSuccess(true);
+        return es;
+    }
+
+    //Metodo delete
+
+    @RequestMapping(value="/mensajito/{id}", method=RequestMethod.DELETE,
+            headers = {"Accept=application/json"})
+    public Estatus borrarMensajitoPuro(@PathVariable String id)throws Exception{
+        repoMensa.delete(id);
         Estatus es = new Estatus();
         es.setSuccess(true);
         return es;
